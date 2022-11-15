@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nakebli <nakebli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 12:48:25 by nakebli           #+#    #+#             */
-/*   Updated: 2022/11/15 16:55:18 by nakebli          ###   ########.fr       */
+/*   Created: 2022/11/15 16:40:34 by nakebli           #+#    #+#             */
+/*   Updated: 2022/11/15 18:39:47 by nakebli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -118,19 +118,19 @@ static char	*read_and_save(char *save, int fd)
 
 char	*get_next_line(int fd)
 {
-	static char	*save;
+	static char	*save[OPEN_MAX];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	save = read_and_save(save, fd);
-	if (!save || !save[0])
-		return (free(save), NULL);
-	line = befor_nl(save);
+	save[fd] = read_and_save(save[fd], fd);
+	if (!save[fd] || !save[fd][0])
+		return (free(save[fd]), NULL);
+	line = befor_nl(save[fd]);
 	if (!line)
 		return (NULL);
-	save = after_nl(save);
-	if (!save)
+	save[fd] = after_nl(save[fd]);
+	if (!save[fd])
 		return (NULL);
 	return (line);
 }
