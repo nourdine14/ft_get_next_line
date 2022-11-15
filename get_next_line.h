@@ -5,20 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nakebli <nakebli@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/05 17:02:46 by nakebli           #+#    #+#             */
-/*   Updated: 2022/11/05 17:37:24 by nakebli          ###   ########.fr       */
+/*   Created: 2022/11/13 12:55:21 by nakebli           #+#    #+#             */
+/*   Updated: 2022/11/15 09:53:03 by nakebli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#   ifndef GET_NEXT_LINE
-# define GET_NEXT_LINE
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
-# define BUFF_SIZE  32
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
 
-char    *get_next_line(int fd);
+char	*get_next_line(int fd);
+char	*ft_strdup(const char *s1);
+char	*ft_strchr(const char *str, int c);
+size_t	ft_strlen(const char *str);
+void	*ft_calloc(size_t count, size_t size);
+void	*ft_memset(void *ptr, int x, size_t n);
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE
 # endif
+
+#endif
